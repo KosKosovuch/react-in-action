@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 // app styles
 import './style.scss'
 // components
@@ -9,6 +9,9 @@ import { DefaultLayout } from '../layouts/DefaultLayout'
 // ctx
 import { THEMES, ThemeContext } from '../utils/contexts/theme-ctx'
 
+// services
+import { GlobalDIService } from '../utils/services/globalDI.service'
+
 export const App = () => {
   const toggleTheme = () => {
     setThemeState(({ theme }) => ({
@@ -16,6 +19,14 @@ export const App = () => {
       toggleTheme: toggleTheme,
     }))
   }
+
+  useEffect(() => {
+    GlobalDIService.$request
+      .$get('https://jsonplaceholder.typicode.com/albums', undefined, undefined)
+      .then(({ data }) => {
+        console.log(data)
+      })
+  }, [])
 
   const [state, setThemeState] = useState({
     theme: THEMES.LIGHT,
