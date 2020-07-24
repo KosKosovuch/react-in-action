@@ -1,46 +1,37 @@
-import React, { useState, useEffect } from 'react'
+import React, { ReactElement, useState } from 'react'
 // app styles
 import './style.scss'
-// components
-import { Counter } from '../components/Counter'
-import { Form } from '../components/form/Form'
-// layout
-import { DefaultLayout } from '../layouts/DefaultLayout'
 // ctx
-import { THEMES, ThemeContext } from '../utils/contexts/theme-ctx'
+import { ThemeProvide } from '../utils/contexts/theme-ctx'
+import { themes } from 'themes'
+// router
+import { Router } from '../router/routes'
 
-// services
-import { GlobalDIService } from '../utils/services/globalDI.service'
+export const App = (): ReactElement => {
+  const [theme, setTheme] = useState({
+    currentTheme: themes.light,
+    toggleTheme: toggleTheme,
+  })
+  const primaryColor = theme.currentTheme.colors.primary
 
-export const App = () => {
-  const toggleTheme = () => {
-    setThemeState(({ theme }) => ({
-      theme: theme === THEMES.LIGHT ? THEMES.DARK : THEMES.LIGHT,
+  function toggleTheme() {
+    setTheme(({ currentTheme }) => ({
+      currentTheme: currentTheme.name === themes.light.name ? themes.dark : themes.light,
       toggleTheme: toggleTheme,
     }))
   }
 
-  useEffect(() => {
-    GlobalDIService.$request
-      .$get('https://jsonplaceholder.typicode.com/albums', undefined, undefined)
-      .then(({ data }) => {
-        console.log(data)
-      })
-  }, [])
-
-  const [state, setThemeState] = useState({
-    theme: THEMES.LIGHT,
-    toggleTheme: toggleTheme,
-  })
-
   return (
-    <ThemeContext.Provider value={state}>
-      <div className={`App ${state.theme}`}>
-        <DefaultLayout>
-          <Counter />
-          <Form />
-        </DefaultLayout>
+    <ThemeProvide value={theme}>
+      <div
+        style={{
+          backgroundColor: theme.currentTheme.name === 'light' ? '#fff' : '#000',
+          color: theme.currentTheme.name === 'light' ? '#000' : '#fff',
+          transition: 'color ease-in-out 0.3s, background-color ease-in-out 0.3s',
+        }}
+      >
+        <Router />
       </div>
-    </ThemeContext.Provider>
+    </ThemeProvide>
   )
 }

@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FormEvent, ReactElement, useState } from 'react'
 
 // components
-import { Input } from './Input'
+import { Input } from './input'
 
 interface Props {}
 export const Form = (props: Props): ReactElement => {
