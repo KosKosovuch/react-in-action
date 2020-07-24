@@ -1,0 +1,13 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+
+  a {
+    padding: 10px 20px;
+
+    &:first-child {
+      padding-left: 0;
+    }
+  }
+}
