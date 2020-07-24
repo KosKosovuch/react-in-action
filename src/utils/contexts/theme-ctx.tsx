@@ -1,13 +1,15 @@
 import { createContext } from 'react'
+import { themes } from 'themes'
+import { IThemeCtx } from '../interfaces/ctx/IThemeCtx'
 
-export enum THEMES {
-  DARK = 'theme-dark',
-  LIGHT = 'theme-light',
+const defaultThemeCtx: IThemeCtx = {
+  currentTheme: new Date().getHours() > 17 ? themes.dark : themes.light,
+  toggleTheme: undefined,
 }
+const ThemeCtx = createContext(defaultThemeCtx)
+ThemeCtx.displayName = 'ThemeContext'
 
-export const THEME_CTX: { theme: string; toggleTheme: () => void } = {
-  theme: THEMES.LIGHT,
-  toggleTheme: () => {},
-}
+const ThemeProvide = ThemeCtx.Provider
+const ThemeConsumer = ThemeCtx.Consumer
 
-export const ThemeContext = createContext(THEME_CTX)
+export { ThemeProvide, ThemeConsumer, ThemeCtx, defaultThemeCtx }
