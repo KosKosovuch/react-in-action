@@ -1,6 +1,7 @@
 // styles
 import './style.scss'
 import React, { ReactElement, ReactNode, useLayoutEffect, useRef, useState } from 'react'
+
 // components
 import { ContentWrapper } from 'components/contentWrapper'
 import { Footer } from '../../components/footer'

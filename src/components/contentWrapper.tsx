@@ -4,7 +4,7 @@ interface Props {
   children: ReactNode
   style?: CSSProperties
 }
-
+  
 export const ContentWrapper = ({ children, style }: Props): ReactElement => (
   <main className="container" style={style}>
     {children}
