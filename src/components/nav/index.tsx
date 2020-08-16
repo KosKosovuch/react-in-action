@@ -13,7 +13,7 @@ export const Nav = (): ReactElement => {
 
   return (
     <nav>
-      <div>
+      <div className="container">
         <NavLink to="/" style={{ color: currentTheme.name === 'light' ? '#000' : '#fff' }}>
           /
         </NavLink>
@@ -23,8 +23,8 @@ export const Nav = (): ReactElement => {
         <NavLink to="/auth" style={{ color: currentTheme.name === 'light' ? '#000' : '#fff' }}>
           Auth Module Load
         </NavLink>
-        <NavLink to="/auth/sign-up" style={{ color: currentTheme.name === 'light' ? '#000' : '#fff' }}>
-          Sign-up
+        <NavLink to="/todo" style={{ color: currentTheme.name === 'light' ? '#000' : '#fff' }}>
+          Todo List
         </NavLink>
         <NavLink to="/fuck" style={{ color: currentTheme.name === 'light' ? '#000' : '#fff' }}>
           404

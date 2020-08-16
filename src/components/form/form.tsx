@@ -9,8 +9,6 @@ export const Form = (props: Props): ReactElement => {
     event.preventDefault()
   }
 
-  // const [email, setEmail] = useState<string>('')
-  // const [password, setPassword] = useState<string>('')
   const [text, setText] = useState('default text')
 
   function onChangeText(ev: ChangeEvent<HTMLInputElement>): void {

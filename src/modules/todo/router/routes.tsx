@@ -6,7 +6,7 @@ import { AsyncModuleView } from 'components/base/asyncModuleView'
 const CurrentView = (): ReactElement => {
   const { viewName } = useParams()
 
-  return <AsyncModuleView moduleName={MODULE_NAMES.AUTH} viewName={viewName} />
+  return <AsyncModuleView moduleName={MODULE_NAMES.TODO} viewName={viewName} />
 }
 
 export const Router = (): ReactElement => {

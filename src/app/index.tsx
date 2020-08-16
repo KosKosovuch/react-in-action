@@ -2,31 +2,31 @@ import React, { ReactElement, useState } from 'react'
 // app styles
 import './style.scss'
 // ctx
-import { ThemeProvide } from '../utils/contexts/theme-ctx'
+import { ThemeProvide, defaultThemeCtx } from '../utils/contexts/theme-ctx'
 import { themes } from 'themes'
 // router
 import { Router } from '../router/routes'
 
 export const App = (): ReactElement => {
-  const [theme, setTheme] = useState({
-    currentTheme: themes.light,
-    toggleTheme: toggleTheme,
-  })
-  const primaryColor = theme.currentTheme.colors.primary
-
-  function toggleTheme() {
+  const toggleTheme = (): void => {
     setTheme(({ currentTheme }) => ({
-      currentTheme: currentTheme.name === themes.light.name ? themes.dark : themes.light,
+      currentTheme: currentTheme === themes.light ? themes.dark : themes.light,
       toggleTheme: toggleTheme,
     }))
   }
+  const [theme, setTheme] = useState({ ...defaultThemeCtx, toggleTheme: toggleTheme })
+  const {
+    currentTheme: {
+      colors: { primary, text },
+    },
+  } = theme
 
   return (
     <ThemeProvide value={theme}>
       <div
         style={{
-          backgroundColor: theme.currentTheme.name === 'light' ? '#fff' : '#000',
-          color: theme.currentTheme.name === 'light' ? '#000' : '#fff',
+          backgroundColor: primary,
+          color: text,
           transition: 'color ease-in-out 0.3s, background-color ease-in-out 0.3s',
         }}
       >

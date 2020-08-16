@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 
 const HomeView = (): ReactElement => {
-  return <div>Home View</div>
+  return <h2>Home View</h2>
 }
 
 export default HomeView
